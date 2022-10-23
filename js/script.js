@@ -94,4 +94,25 @@ const displayRepoInfo = function (repoInfo, languages) {
     repoData.append(div);
   }; 
 
-  
+  // Step 5
+
+  backButton.addEventListener("click", function() {
+    allRepoInfo.classList.remove("hide");
+    repoData.classList.add("hide");
+    backButton.classList.add("hide");
+  });
+
+filterInput.addEventListener("input", function(e) {
+    const searchBox = e.target.value;
+    const repos = document.createElement(".repo");
+    const searchLowerCase = searchText.toLowerCase();
+
+    for (const repo of repos) {
+        const repoLowertext = repo.innerText.toLowerCase ();
+        if (repoLowertext.includes(searchLowerCase)) {
+            repo.classList.remove("hide");
+        } else {
+        repo.classList.add("hide");        
+     }
+    }
+});

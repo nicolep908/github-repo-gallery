@@ -5,6 +5,9 @@ const repoList = document.querySelector(".repo-list");
 //step 4 new variables
 const allRepoInfo = document.querySelector(".repos");
 const repoData = document.querySelector(".repo-data");
+//step 5 variables
+const backButton = document.querySelector(".view-repos");
+const filterInput = document.querySelector(".filter-repos");
 
 const gitUserInfo = async function () {
     const userInfo = await fetch (
@@ -32,13 +35,13 @@ const displayUserInfo = function (data) {
     `;
 
 overview.append(div);
-gitRepoList();
+gitRepoList(username);
 };
 
 const gitRepoList = async function () {
     const gitRepo = await fetch (`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`);
     const repoData = await gitRepo.json();
-    displayRepos(repoDataIndividual);
+    displayRepos(repoData);
 };
 
 const displayRepos = function (repos) {
@@ -90,3 +93,5 @@ const displayRepoInfo = function (repoInfo, languages) {
     `;
     repoData.append(div);
   }; 
+
+  
